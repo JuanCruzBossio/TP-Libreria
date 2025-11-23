@@ -28,52 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.controlNumerico1 = new TP_Libreria.ControlNumerico();
-            this.controlTexto1 = new TP_Libreria.ControlTexto();
-            this.controlTexto2 = new TP_Libreria.ControlTexto();
-            this.controlNumerico2 = new TP_Libreria.ControlNumerico();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonModificacion = new System.Windows.Forms.Button();
             this.buttonBaja = new System.Windows.Forms.Button();
             this.buttonAlta = new System.Windows.Forms.Button();
+            this.controlNumerico2 = new TP_Libreria.ControlNumerico();
+            this.controlTexto2 = new TP_Libreria.ControlTexto();
+            this.controlTexto1 = new TP_Libreria.ControlTexto();
+            this.controlNumerico1 = new TP_Libreria.ControlNumerico();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // controlNumerico1
-            // 
-            this.controlNumerico1.Location = new System.Drawing.Point(13, 13);
-            this.controlNumerico1.Name = "controlNumerico1";
-            this.controlNumerico1.Numero = 0F;
-            this.controlNumerico1.Size = new System.Drawing.Size(584, 37);
-            this.controlNumerico1.TabIndex = 0;
-            this.controlNumerico1.Titulo = "Id Usuario:";
-            // 
-            // controlTexto1
-            // 
-            this.controlTexto1.Location = new System.Drawing.Point(12, 56);
-            this.controlTexto1.Name = "controlTexto1";
-            this.controlTexto1.Size = new System.Drawing.Size(584, 36);
-            this.controlTexto1.TabIndex = 1;
-            this.controlTexto1.Texto = null;
-            this.controlTexto1.Titulo = "Nombre:";
-            // 
-            // controlTexto2
-            // 
-            this.controlTexto2.Location = new System.Drawing.Point(12, 98);
-            this.controlTexto2.Name = "controlTexto2";
-            this.controlTexto2.Size = new System.Drawing.Size(584, 36);
-            this.controlTexto2.TabIndex = 2;
-            this.controlTexto2.Texto = null;
-            this.controlTexto2.Titulo = "Contraseña:";
-            // 
-            // controlNumerico2
-            // 
-            this.controlNumerico2.Location = new System.Drawing.Point(13, 141);
-            this.controlNumerico2.Name = "controlNumerico2";
-            this.controlNumerico2.Numero = 0F;
-            this.controlNumerico2.Size = new System.Drawing.Size(584, 37);
-            this.controlNumerico2.TabIndex = 3;
-            this.controlNumerico2.Titulo = "Rol:";
             // 
             // dataGridView1
             // 
@@ -113,6 +77,46 @@
             this.buttonAlta.Text = "Alta";
             this.buttonAlta.UseVisualStyleBackColor = true;
             this.buttonAlta.Click += new System.EventHandler(this.buttonAlta_Click);
+            // 
+            // controlNumerico2
+            // 
+            this.controlNumerico2.Location = new System.Drawing.Point(13, 141);
+            this.controlNumerico2.Name = "controlNumerico2";
+            this.controlNumerico2.Numero = 0F;
+            this.controlNumerico2.PermitirEditar = true;
+            this.controlNumerico2.Size = new System.Drawing.Size(584, 37);
+            this.controlNumerico2.TabIndex = 3;
+            this.controlNumerico2.Titulo = "Rol:";
+            // 
+            // controlTexto2
+            // 
+            this.controlTexto2.Location = new System.Drawing.Point(12, 98);
+            this.controlTexto2.Name = "controlTexto2";
+            this.controlTexto2.PermitirNull = true;
+            this.controlTexto2.Size = new System.Drawing.Size(584, 36);
+            this.controlTexto2.TabIndex = 2;
+            this.controlTexto2.Texto = null;
+            this.controlTexto2.Titulo = "Contraseña:";
+            // 
+            // controlTexto1
+            // 
+            this.controlTexto1.Location = new System.Drawing.Point(12, 56);
+            this.controlTexto1.Name = "controlTexto1";
+            this.controlTexto1.PermitirNull = false;
+            this.controlTexto1.Size = new System.Drawing.Size(584, 36);
+            this.controlTexto1.TabIndex = 1;
+            this.controlTexto1.Texto = null;
+            this.controlTexto1.Titulo = "Nombre:";
+            // 
+            // controlNumerico1
+            // 
+            this.controlNumerico1.Location = new System.Drawing.Point(13, 13);
+            this.controlNumerico1.Name = "controlNumerico1";
+            this.controlNumerico1.Numero = 0F;
+            this.controlNumerico1.PermitirEditar = false;
+            this.controlNumerico1.Size = new System.Drawing.Size(584, 37);
+            this.controlNumerico1.TabIndex = 0;
+            this.controlNumerico1.Titulo = "Id Usuario:";
             // 
             // ABMUsuario
             // 

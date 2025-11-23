@@ -36,6 +36,15 @@ namespace TP_Libreria
                 textBox1.Text = value;
             }
         }
+
+        private bool permitirNull = false;
+
+        public bool PermitirNull
+        {
+            get { return permitirNull ; }
+            set { permitirNull = value; }
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -51,7 +60,7 @@ namespace TP_Libreria
         }
         public bool validate()
         {
-            if (!string.IsNullOrEmpty(texto))
+            if (!string.IsNullOrEmpty(texto) || permitirNull == true)
             {
                 textBox1.BackColor = Color.White;
                 return true;

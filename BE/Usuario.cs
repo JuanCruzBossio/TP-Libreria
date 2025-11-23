@@ -38,7 +38,7 @@ namespace BE
         public string HashedPassword
         {
             get { return hashedPassword; }
-            set { hashedPassword = ComputeSha256Hash(value); }
+            set { if (value != null) { hashedPassword = ComputeSha256Hash(value); } else { hashedPassword = null; } }
         }
 
         private int rol;

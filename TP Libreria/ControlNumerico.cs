@@ -36,8 +36,17 @@ namespace TP_Libreria
                 textBox1.Text = value.ToString();
             }
         }
+        private bool permitirEditar = true;
+
+        public bool PermitirEditar
+        {
+            get { return permitirEditar; }
+            set { permitirEditar  = value; }
+        }
+
         private void ControlNumerico_Load(object sender, EventArgs e)
         {
+            textBox1.Enabled = PermitirEditar;
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
