@@ -16,7 +16,8 @@ namespace TP_Libreria
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1(new BE.Usuario(0, "", "", 1)));
+            //Application.Run(new Login());
         }
     }
 }

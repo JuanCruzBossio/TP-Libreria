@@ -12,9 +12,21 @@ namespace TP_Libreria
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public BE.Usuario usuarioLogueado;
+        public Form1(BE.Usuario usuario)
         {
             InitializeComponent();
+            this.usuarioLogueado = usuario;
+            if (usuarioLogueado.Rol == 1)
+            {
+
+            }
+            else if (usuarioLogueado.Rol == 2)
+            {
+                generoToolStripMenuItem.Visible = false;
+                libroToolStripMenuItem.Visible = false;
+                usuarioToolStripMenuItem.Visible = false;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,6 +60,11 @@ namespace TP_Libreria
             ABMUsuario ventanaUsuario = new ABMUsuario();
             ventanaUsuario.MdiParent = this;
             ventanaUsuario.Show();
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
