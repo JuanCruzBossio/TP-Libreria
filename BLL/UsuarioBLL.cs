@@ -10,7 +10,7 @@ namespace BLL
 {
     public class UsuarioBLL : IBLL<BE.Usuario>
     {
-        public IDAL<Usuario> DAL { get; set; }
+        public UsuarioDAL DAL = new UsuarioDAL();
 
         public UsuarioBLL()
         {
@@ -35,6 +35,10 @@ namespace BLL
         public int Modificacion(Usuario entidad)
         {
             return DAL.Modificacion(entidad);
+        }
+        public Usuario Login(Usuario user)
+        {
+            return DAL.Login(user);
         }
     }
 

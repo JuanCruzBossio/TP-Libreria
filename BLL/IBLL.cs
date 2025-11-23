@@ -9,7 +9,6 @@ namespace BLL
 {
     public interface IBLL<T>
     {
-        IDAL<T> DAL { get; set; }
         int Alta(T entidad);
         int Baja(int id);
         int Modificacion(T entidad);

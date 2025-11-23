@@ -66,5 +66,26 @@ namespace DAL
 
             return lista;
         }
+        public Usuario Login(Usuario user)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Nombre", user.Nombre),
+                new SqlParameter("@HashedPassword", user.HashedPassword)
+            };
+            Usuario usuario = new Usuario(0, "", "", 0);
+            DataTable tabla = acceso.leer("login", parametros);
+
+            foreach (DataRow fila in tabla.Rows)
+            {
+                usuario = new Usuario(
+                                    idUsuario: int.Parse(fila["IdUsuario"].ToString()),
+                                    nombre: fila["Nombre"].ToString(),
+                                    hashedPassword: fila["HashedPassword"].ToString(),
+                                    rol: int.Parse(fila["Rol"].ToString())
+                 );
+            }
+            return usuario;
+        }
     }
 }
