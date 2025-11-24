@@ -44,6 +44,7 @@
             this.controlNumerico1.Location = new System.Drawing.Point(38, 29);
             this.controlNumerico1.Name = "controlNumerico1";
             this.controlNumerico1.Numero = 0F;
+            this.controlNumerico1.PermitirEditar = false;
             this.controlNumerico1.Size = new System.Drawing.Size(584, 37);
             this.controlNumerico1.TabIndex = 0;
             this.controlNumerico1.Titulo = "Id Cliente:";
@@ -52,6 +53,7 @@
             // 
             this.controlTexto1.Location = new System.Drawing.Point(38, 94);
             this.controlTexto1.Name = "controlTexto1";
+            this.controlTexto1.PermitirNull = false;
             this.controlTexto1.Size = new System.Drawing.Size(584, 36);
             this.controlTexto1.TabIndex = 1;
             this.controlTexto1.Texto = null;
@@ -61,6 +63,7 @@
             // 
             this.controlTexto2.Location = new System.Drawing.Point(38, 151);
             this.controlTexto2.Name = "controlTexto2";
+            this.controlTexto2.PermitirNull = false;
             this.controlTexto2.Size = new System.Drawing.Size(584, 36);
             this.controlTexto2.TabIndex = 2;
             this.controlTexto2.Texto = null;
@@ -71,6 +74,7 @@
             this.controlNumerico2.Location = new System.Drawing.Point(38, 210);
             this.controlNumerico2.Name = "controlNumerico2";
             this.controlNumerico2.Numero = 0F;
+            this.controlNumerico2.PermitirEditar = true;
             this.controlNumerico2.Size = new System.Drawing.Size(584, 37);
             this.controlNumerico2.TabIndex = 3;
             this.controlNumerico2.Titulo = "Edad:";

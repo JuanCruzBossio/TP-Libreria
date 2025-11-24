@@ -8,20 +8,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TP_Libreria
 {
     public partial class ABMCliente : Form
     {
-        public ABMCliente()
+        public int rolLogueado;
+
+        public ABMCliente(int rol)
         {
             InitializeComponent();
+            rolLogueado = rol;
         }
         public BLL.ClienteBLL clienteBll = new BLL.ClienteBLL();
         public BE.Cliente clienteBE = new BE.Cliente(0, "", "", 0);
         private void ABMCliente_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = clienteBll.Listado();
+            if (rolLogueado == 1)
+            {
+                //Es admin tiene todos los permisos
+            }
+            else
+            {
+                //Es vendedor, no puede Utilizar BAJA
+                buttonBaja.Enabled = false;
+            }
         }
         private void CargarDatosCampos()
         {

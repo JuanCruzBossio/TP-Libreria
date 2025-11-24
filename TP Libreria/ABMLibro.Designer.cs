@@ -46,6 +46,7 @@
             this.controlNumerico1.Location = new System.Drawing.Point(13, 13);
             this.controlNumerico1.Name = "controlNumerico1";
             this.controlNumerico1.Numero = 0F;
+            this.controlNumerico1.PermitirEditar = false;
             this.controlNumerico1.Size = new System.Drawing.Size(584, 37);
             this.controlNumerico1.TabIndex = 0;
             this.controlNumerico1.Titulo = "Id Libro:";
@@ -54,6 +55,7 @@
             // 
             this.controlTexto1.Location = new System.Drawing.Point(13, 57);
             this.controlTexto1.Name = "controlTexto1";
+            this.controlTexto1.PermitirNull = false;
             this.controlTexto1.Size = new System.Drawing.Size(584, 36);
             this.controlTexto1.TabIndex = 1;
             this.controlTexto1.Texto = null;
@@ -63,6 +65,7 @@
             // 
             this.controlTexto2.Location = new System.Drawing.Point(13, 100);
             this.controlTexto2.Name = "controlTexto2";
+            this.controlTexto2.PermitirNull = false;
             this.controlTexto2.Size = new System.Drawing.Size(584, 36);
             this.controlTexto2.TabIndex = 2;
             this.controlTexto2.Texto = null;
@@ -72,7 +75,8 @@
             // 
             this.controlNumerico2.Location = new System.Drawing.Point(13, 143);
             this.controlNumerico2.Name = "controlNumerico2";
-            this.controlNumerico2.Numero = 0F;
+            this.controlNumerico2.Numero = 1F;
+            this.controlNumerico2.PermitirEditar = true;
             this.controlNumerico2.Size = new System.Drawing.Size(584, 37);
             this.controlNumerico2.TabIndex = 3;
             this.controlNumerico2.Titulo = "Precio:";
@@ -81,7 +85,8 @@
             // 
             this.controlNumerico3.Location = new System.Drawing.Point(13, 187);
             this.controlNumerico3.Name = "controlNumerico3";
-            this.controlNumerico3.Numero = 0F;
+            this.controlNumerico3.Numero = 1F;
+            this.controlNumerico3.PermitirEditar = true;
             this.controlNumerico3.Size = new System.Drawing.Size(584, 37);
             this.controlNumerico3.TabIndex = 4;
             this.controlNumerico3.Titulo = "Stock:";

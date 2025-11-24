@@ -8,14 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TP_Libreria
 {
     public partial class ABMLibro : Form
     {
-        public ABMLibro()
+        public int rolLogueado;
+
+        public ABMLibro(int rol)
         {
             InitializeComponent();
+            rolLogueado = rol;
         }
         public BLL.LibroBLL libroBll = new BLL.LibroBLL();
         public BE.Libro libroBE = new BE.Libro(0, "", "", new BE.Genero(0, ""), 0, 0);
@@ -25,6 +29,17 @@ namespace TP_Libreria
             controlSelector1.CargarLista<BE.Genero>(generoBll.Listado());
             controlSelector1.ConfigurarDisplayMember("descripcion");
             dataGridView1.DataSource = libroBll.Listado();
+            if (rolLogueado == 1)
+            {
+                //Es admin tiene todos los permisos
+            }
+            else
+            {
+                //Es vendedor, no puede Utilizar ABM, solo mirar
+                buttonAlta.Enabled = false;
+                buttonBaja.Enabled = false;
+                buttonModificacion.Enabled = false;
+            }
         }
         private void CargarDatosCampos()
         {

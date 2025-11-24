@@ -24,7 +24,6 @@ namespace TP_Libreria
             else if (usuarioLogueado.Rol == 2)
             {
                 generoToolStripMenuItem.Visible = false;
-                libroToolStripMenuItem.Visible = false;
             }
         }
 
@@ -42,14 +41,14 @@ namespace TP_Libreria
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMCliente ventanaCliente = new ABMCliente();
+            ABMCliente ventanaCliente = new ABMCliente(usuarioLogueado.Rol);
             ventanaCliente.MdiParent = this;
             ventanaCliente.Show();
         }
 
         private void libroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMLibro ventanaLibro = new ABMLibro();
+            ABMLibro ventanaLibro = new ABMLibro(usuarioLogueado.Rol);
             ventanaLibro.MdiParent = this;
             ventanaLibro.Show();
         }
