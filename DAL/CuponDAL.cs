@@ -68,11 +68,12 @@ namespace DAL
         }
 
         // Validar cupón por Código
-        public Cupon Validar(string codigo)
+        public Cupon Validar(string codigo, int idCliente)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Codigo", codigo)
+                new SqlParameter("@Codigo", codigo),
+                new SqlParameter("@IdCliente", idCliente)
             };
 
             DataTable tabla = acceso.leer("ValidarCupon", parametros);

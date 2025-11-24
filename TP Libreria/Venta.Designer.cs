@@ -37,13 +37,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxTotal = new System.Windows.Forms.TextBox();
             this.buttonLimpiar = new System.Windows.Forms.Button();
-            this.controlSelectorCliente = new TP_Libreria.ControlSelector();
             this.buttonAltaVenta = new System.Windows.Forms.Button();
             this.textBoxCupon = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonValidarCupon = new System.Windows.Forms.Button();
             this.textBoxCuponValor = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.controlSelectorCliente = new TP_Libreria.ControlSelector();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLibros)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCarrito)).BeginInit();
             this.SuspendLayout();
@@ -51,7 +51,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 68);
+            this.label1.Location = new System.Drawing.Point(71, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 1;
@@ -77,7 +77,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(599, 68);
+            this.label2.Location = new System.Drawing.Point(651, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 3;
@@ -130,15 +130,6 @@
             this.buttonLimpiar.Text = "Limpiar el Carrito";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // controlSelectorCliente
-            // 
-            this.controlSelectorCliente.Location = new System.Drawing.Point(14, 12);
-            this.controlSelectorCliente.Name = "controlSelectorCliente";
-            this.controlSelectorCliente.Seleccionado = null;
-            this.controlSelectorCliente.Size = new System.Drawing.Size(588, 36);
-            this.controlSelectorCliente.TabIndex = 0;
-            this.controlSelectorCliente.Titulo = "Cliente:";
             // 
             // buttonAltaVenta
             // 
@@ -193,6 +184,15 @@
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 14;
             this.label5.Text = "Descuento:";
+            // 
+            // controlSelectorCliente
+            // 
+            this.controlSelectorCliente.Location = new System.Drawing.Point(14, 12);
+            this.controlSelectorCliente.Name = "controlSelectorCliente";
+            this.controlSelectorCliente.Seleccionado = null;
+            this.controlSelectorCliente.Size = new System.Drawing.Size(588, 36);
+            this.controlSelectorCliente.TabIndex = 0;
+            this.controlSelectorCliente.Titulo = "Cliente:";
             // 
             // Venta
             // 

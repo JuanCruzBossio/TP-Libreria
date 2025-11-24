@@ -34,9 +34,9 @@ namespace BLL
             return DAL.Listado();
         }
 
-        public Cupon Validar(string codigo)
+        public Cupon Validar(string codigo, int idCliente)
         {
-            return DAL.Validar(codigo);
+            return DAL.Validar(codigo, idCliente);
         }
     }
 }

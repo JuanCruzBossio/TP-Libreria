@@ -71,5 +71,12 @@ namespace TP_Libreria
             ventanaVenta.MdiParent = this;
             ventanaVenta.Show();
         }
+
+        private void cuponToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABMCupon ventanaCupon = new ABMCupon();
+            ventanaCupon.MdiParent = this;
+            ventanaCupon.Show();
+        }
     }
 }

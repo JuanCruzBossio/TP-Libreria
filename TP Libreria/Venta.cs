@@ -192,16 +192,18 @@ namespace TP_Libreria
         {
             try
             {
-                cupon = cuponBLL.Validar(textBoxCupon.Text);
+                if (!validateControllers()) return;
+                cliente = (BE.Cliente)controlSelectorCliente.Seleccionado;
+                cupon = cuponBLL.Validar(textBoxCupon.Text, cliente.IdCliente);
                 if(cupon != null)
                 {
                     MessageBox.Show("El Cupon es valido");
                 }
                 else
                 {
-                    MessageBox.Show("El Cupon ingresado no es valido");
+                    MessageBox.Show("El Cupon ingresado no es valido o ya fue utilizado por el cliente");
                 }
-                textBoxCuponValor.Text = cupon.Valor.ToString();
+                textBoxCuponValor.Text = cupon?.Valor.ToString() ?? "0";
                 UpdateTotal();
             }
             catch (Exception)

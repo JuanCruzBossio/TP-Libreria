@@ -16,6 +16,7 @@ namespace BE
             Cliente = _cliente;
             Vendedor = usuario;
             DetallesVenta = detallesVenta ?? new List<DetalleVenta>();
+            Cupon = cupon;
         }
         private int idVenta;
 

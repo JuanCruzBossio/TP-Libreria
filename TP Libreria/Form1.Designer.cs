@@ -36,6 +36,7 @@
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cuponToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,8 +44,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aBMToolStripMenuItem,
-            this.logOutToolStripMenuItem,
-            this.ventaToolStripMenuItem});
+            this.ventaToolStripMenuItem,
+            this.logOutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(829, 24);
@@ -57,7 +58,8 @@
             this.generoToolStripMenuItem,
             this.clienteToolStripMenuItem,
             this.libroToolStripMenuItem,
-            this.usuarioToolStripMenuItem});
+            this.usuarioToolStripMenuItem,
+            this.cuponToolStripMenuItem});
             this.aBMToolStripMenuItem.Name = "aBMToolStripMenuItem";
             this.aBMToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.aBMToolStripMenuItem.Text = "ABM";
@@ -65,28 +67,28 @@
             // generoToolStripMenuItem
             // 
             this.generoToolStripMenuItem.Name = "generoToolStripMenuItem";
-            this.generoToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.generoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.generoToolStripMenuItem.Text = "Genero";
             this.generoToolStripMenuItem.Click += new System.EventHandler(this.generoToolStripMenuItem_Click);
             // 
             // clienteToolStripMenuItem
             // 
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clienteToolStripMenuItem.Text = "Cliente";
             this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
             // 
             // libroToolStripMenuItem
             // 
             this.libroToolStripMenuItem.Name = "libroToolStripMenuItem";
-            this.libroToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.libroToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.libroToolStripMenuItem.Text = "Libro";
             this.libroToolStripMenuItem.Click += new System.EventHandler(this.libroToolStripMenuItem_Click);
             // 
             // usuarioToolStripMenuItem
             // 
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.usuarioToolStripMenuItem.Text = "Usuario";
             this.usuarioToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click);
             // 
@@ -103,6 +105,13 @@
             this.ventaToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.ventaToolStripMenuItem.Text = "Venta";
             this.ventaToolStripMenuItem.Click += new System.EventHandler(this.ventaToolStripMenuItem_Click);
+            // 
+            // cuponToolStripMenuItem
+            // 
+            this.cuponToolStripMenuItem.Name = "cuponToolStripMenuItem";
+            this.cuponToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cuponToolStripMenuItem.Text = "Cupon";
+            this.cuponToolStripMenuItem.Click += new System.EventHandler(this.cuponToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -132,6 +141,7 @@
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ventaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cuponToolStripMenuItem;
     }
 }
 
