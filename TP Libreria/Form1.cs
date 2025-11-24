@@ -25,7 +25,6 @@ namespace TP_Libreria
             {
                 generoToolStripMenuItem.Visible = false;
                 libroToolStripMenuItem.Visible = false;
-                usuarioToolStripMenuItem.Visible = false;
             }
         }
 
@@ -57,7 +56,7 @@ namespace TP_Libreria
 
         private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMUsuario ventanaUsuario = new ABMUsuario();
+            ABMUsuario ventanaUsuario = new ABMUsuario(usuarioLogueado.Rol);
             ventanaUsuario.MdiParent = this;
             ventanaUsuario.Show();
         }

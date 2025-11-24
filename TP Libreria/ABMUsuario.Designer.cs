@@ -32,10 +32,11 @@
             this.buttonModificacion = new System.Windows.Forms.Button();
             this.buttonBaja = new System.Windows.Forms.Button();
             this.buttonAlta = new System.Windows.Forms.Button();
-            this.controlNumerico2 = new TP_Libreria.ControlNumerico();
-            this.controlTexto2 = new TP_Libreria.ControlTexto();
             this.controlTexto1 = new TP_Libreria.ControlTexto();
             this.controlNumerico1 = new TP_Libreria.ControlNumerico();
+            this.controlPasswor1 = new TP_Libreria.ControlPasswor();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,26 +79,6 @@
             this.buttonAlta.UseVisualStyleBackColor = true;
             this.buttonAlta.Click += new System.EventHandler(this.buttonAlta_Click);
             // 
-            // controlNumerico2
-            // 
-            this.controlNumerico2.Location = new System.Drawing.Point(13, 141);
-            this.controlNumerico2.Name = "controlNumerico2";
-            this.controlNumerico2.Numero = 0F;
-            this.controlNumerico2.PermitirEditar = true;
-            this.controlNumerico2.Size = new System.Drawing.Size(584, 37);
-            this.controlNumerico2.TabIndex = 3;
-            this.controlNumerico2.Titulo = "Rol:";
-            // 
-            // controlTexto2
-            // 
-            this.controlTexto2.Location = new System.Drawing.Point(12, 98);
-            this.controlTexto2.Name = "controlTexto2";
-            this.controlTexto2.PermitirNull = true;
-            this.controlTexto2.Size = new System.Drawing.Size(584, 36);
-            this.controlTexto2.TabIndex = 2;
-            this.controlTexto2.Texto = null;
-            this.controlTexto2.Titulo = "Contraseña:";
-            // 
             // controlTexto1
             // 
             this.controlTexto1.Location = new System.Drawing.Point(12, 56);
@@ -118,17 +99,46 @@
             this.controlNumerico1.TabIndex = 0;
             this.controlNumerico1.Titulo = "Id Usuario:";
             // 
+            // controlPasswor1
+            // 
+            this.controlPasswor1.Location = new System.Drawing.Point(-14, 98);
+            this.controlPasswor1.MostrarPassword = false;
+            this.controlPasswor1.Name = "controlPasswor1";
+            this.controlPasswor1.Password = null;
+            this.controlPasswor1.Size = new System.Drawing.Size(708, 39);
+            this.controlPasswor1.TabIndex = 13;
+            this.controlPasswor1.Load += new System.EventHandler(this.controlPasswor1_Load);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 149);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Rol";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(77, 143);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(509, 21);
+            this.comboBox1.TabIndex = 15;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // ABMUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 450);
+            this.ClientSize = new System.Drawing.Size(698, 450);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.controlPasswor1);
             this.Controls.Add(this.buttonModificacion);
             this.Controls.Add(this.buttonBaja);
             this.Controls.Add(this.buttonAlta);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.controlNumerico2);
-            this.Controls.Add(this.controlTexto2);
             this.Controls.Add(this.controlTexto1);
             this.Controls.Add(this.controlNumerico1);
             this.Name = "ABMUsuario";
@@ -136,6 +146,7 @@
             this.Load += new System.EventHandler(this.ABMUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -143,11 +154,12 @@
 
         private ControlNumerico controlNumerico1;
         private ControlTexto controlTexto1;
-        private ControlTexto controlTexto2;
-        private ControlNumerico controlNumerico2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button buttonModificacion;
         private System.Windows.Forms.Button buttonBaja;
         private System.Windows.Forms.Button buttonAlta;
+        private ControlPasswor controlPasswor1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

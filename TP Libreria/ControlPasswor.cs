@@ -39,9 +39,16 @@ namespace TP_Libreria
                 textBox1.UseSystemPasswordChar = !value;
             }
         }
+        private bool permitirEditar = true;
 
+        public bool PermitirEditar
+        {
+            get { return permitirEditar; }
+            set { permitirEditar = value; }
+        }
         private void ControlPasswor_Load(object sender, EventArgs e)
         {
+            textBox1.Enabled = PermitirEditar;
             textBox1.UseSystemPasswordChar = true;
         }
 

@@ -12,22 +12,55 @@ namespace TP_Libreria
 {
     public partial class ABMUsuario : Form
     {
-        public ABMUsuario()
+        public int rolLogueado;
+        public ABMUsuario(int rol)
         {
             InitializeComponent();
+            rolLogueado = rol;
         }
         public BLL.UsuarioBLL usuarioBll = new BLL.UsuarioBLL();
         public BE.Usuario usuarioBE = new BE.Usuario(0, "", "", 0);
         private void ABMUsuario_Load(object sender, EventArgs e)
         {
+            if (rolLogueado == 1)
+            {
+                //Es admin tiene todos los permisos
+            }
+            else
+            {
+                //Es vendedor, no puede Utilizar ABM, solo mirar
+                buttonAlta.Enabled = false;
+                buttonBaja.Enabled = false;
+                buttonModificacion.Enabled = false;
+                comboBox1.Enabled = true;
+            }
             dataGridView1.DataSource = usuarioBll.Listado();
+            dataGridView1.Columns["HashedPassword"].Visible = false;
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add(new { rol = 1 , descripcion = "Admin"});
+            comboBox1.Items.Add(new { rol = 2 , descripcion = "Vendedor"});
+            comboBox1.DisplayMember = "descripcion";
+            comboBox1.ValueMember = "rol";
+            
         }
         private void CargarDatosCampos()
         {
             controlNumerico1.Numero = usuarioBE.IdUsuario;
             controlTexto1.Texto = usuarioBE.Nombre;
-            controlTexto2.Texto = "";
-            controlNumerico2.Numero = usuarioBE.Rol;
+            controlPasswor1.Password = usuarioBE.HashedPassword = null;
+            comboBox1.SelectedValue = usuarioBE.Rol;
+            int index = 0;
+            foreach (dynamic item in comboBox1.Items)
+            {
+                if (item.rol == usuarioBE.Rol)
+                {
+                    comboBox1.SelectedIndex = index;
+                }
+                else
+                {
+                    index++;
+                }
+            }
         }
         public bool validateControllers()
         {
@@ -75,8 +108,8 @@ namespace TP_Libreria
                 BE.Usuario usuario = new BE.Usuario(
                     int.Parse(controlNumerico1.Numero.ToString()),
                     controlTexto1.Texto,
-                    controlTexto2.Texto,
-                    int.Parse(controlNumerico2.Numero.ToString())
+                    controlPasswor1.Password,
+                    int.Parse(comboBox1.SelectedValue.ToString())
                 );
 
                 int res = usuarioBll.Alta(usuario);
@@ -126,8 +159,8 @@ namespace TP_Libreria
                 BE.Usuario usuario = new BE.Usuario(
                     int.Parse(controlNumerico1.Numero.ToString()),
                     controlTexto1.Texto,
-                    controlTexto2.Texto,
-                    int.Parse(controlNumerico2.Numero.ToString())
+                    controlPasswor1.Password,
+                    int.Parse(comboBox1.SelectedValue.ToString())
                 );
 
                 int res = usuarioBll.Modificacion(usuario);
@@ -143,6 +176,21 @@ namespace TP_Libreria
             {
                 MessageBox.Show("Error al modificar el usuario: " + ex.Message);
             }
+        }
+
+        private void controlTexto2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void controlPasswor1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
