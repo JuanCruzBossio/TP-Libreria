@@ -27,9 +27,9 @@ namespace BE
 			get { return descripcion; }
 			set { descripcion = value; }
 		}
-		public object ToDataGripViewer()
+		public override string  ToString()
 		{
-			return new {Descripcion= descripcion };
+			return Descripcion;
 		}
 	}
 }

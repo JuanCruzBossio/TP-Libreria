@@ -9,12 +9,12 @@ namespace BE
 {
     public class Venta
     {
-        public Venta(int idVenta, DateTime fecha, Cliente cliente, Usuario vendedor, List<DetalleVenta> detallesVenta)
+        public Venta(int idVenta, DateTime fecha, Cliente _cliente, Usuario usuario, List<DetalleVenta> detallesVenta)
         {
             IdVenta = idVenta;
             Fecha = fecha;
-            Cliente = cliente;
-            Vendedor = vendedor;
+            Cliente = _cliente;
+            Vendedor = usuario;
             DetallesVenta = detallesVenta ?? new List<DetalleVenta>();
         }
         private int idVenta;
@@ -64,6 +64,13 @@ namespace BE
                 total += detalle.total();
             }
             return total;
+        }
+        public void AgregarDetalle(DetalleVenta detalle)
+        {
+            if (detalle != null)
+            {
+                detallesVenta.Add(detalle);
+            }
         }
     }
     public class DetalleVenta

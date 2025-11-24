@@ -64,7 +64,10 @@ namespace BE
 			get { return stock; }
 			set { stock = value; }
 		}
+        public override string ToString()
+        {
+            return Titulo;
+        }
 
-
-	}
+    }
 }

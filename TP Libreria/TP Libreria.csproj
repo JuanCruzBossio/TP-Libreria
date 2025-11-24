@@ -108,6 +108,12 @@
     <Compile Include="ControlTexto.Designer.cs">
       <DependentUpon>ControlTexto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Venta.Designer.cs">
+      <DependentUpon>Venta.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ABMCliente.resx">
       <DependentUpon>ABMCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +152,9 @@
     </Compile>
     <EmbeddedResource Include="ControlTexto.resx">
       <DependentUpon>ControlTexto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Venta.resx">
+      <DependentUpon>Venta.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -64,5 +64,12 @@ namespace TP_Libreria
         {
             this.Close();
         }
+
+        private void ventaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Venta ventanaVenta= new Venta(usuarioLogueado);
+            ventanaVenta.MdiParent = this;
+            ventanaVenta.Show();
+        }
     }
 }
