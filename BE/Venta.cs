@@ -9,7 +9,7 @@ namespace BE
 {
     public class Venta
     {
-        public Venta(int idVenta, DateTime fecha, Cliente _cliente, Usuario usuario, List<DetalleVenta> detallesVenta)
+        public Venta(int idVenta, DateTime fecha, Cliente _cliente, Usuario usuario, List<DetalleVenta> detallesVenta, Cupon cupon = null)
         {
             IdVenta = idVenta;
             Fecha = fecha;
@@ -56,6 +56,16 @@ namespace BE
             set { detallesVenta = value; }
         }
 
+        private Cupon cupon;
+
+        public Cupon Cupon
+        {
+            get { return cupon; }
+            set { cupon = value; }
+        }
+
+
+
         public float MontoTotal()
         {
             float total = 0;
@@ -63,14 +73,18 @@ namespace BE
             {
                 total += detalle.total();
             }
-            return total;
-        }
-        public void AgregarDetalle(DetalleVenta detalle)
-        {
-            if (detalle != null)
+            if (Cupon != null)
             {
-                detallesVenta.Add(detalle);
+                if(Cupon.Valor < total)
+                {
+                    total -= Cupon.Valor;
+                }
+                else
+                {
+                    total = 0;
+                }
             }
+            return total;
         }
     }
     public class DetalleVenta

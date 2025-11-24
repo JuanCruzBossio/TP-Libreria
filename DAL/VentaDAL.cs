@@ -17,7 +17,8 @@ namespace DAL
             {
                 new SqlParameter("@Fecha", entidad.Fecha),
                 new SqlParameter("@IdCliente", entidad.Cliente.IdCliente),
-                new SqlParameter("@IdVendedor", entidad.Vendedor.IdUsuario)
+                new SqlParameter("@IdVendedor", entidad.Vendedor.IdUsuario),
+                new SqlParameter("@IdCupon", entidad.Cupon?.IdCupon ?? null)
             };
 
             // Ejecutar y leer el Id generado

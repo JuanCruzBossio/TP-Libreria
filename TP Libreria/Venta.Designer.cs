@@ -39,6 +39,11 @@
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.controlSelectorCliente = new TP_Libreria.ControlSelector();
             this.buttonAltaVenta = new System.Windows.Forms.Button();
+            this.textBoxCupon = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.buttonValidarCupon = new System.Windows.Forms.Button();
+            this.textBoxCuponValor = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLibros)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCarrito)).BeginInit();
             this.SuspendLayout();
@@ -101,7 +106,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 307);
+            this.label3.Location = new System.Drawing.Point(19, 377);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 7;
@@ -110,7 +115,7 @@
             // textBoxTotal
             // 
             this.textBoxTotal.Enabled = false;
-            this.textBoxTotal.Location = new System.Drawing.Point(74, 304);
+            this.textBoxTotal.Location = new System.Drawing.Point(82, 374);
             this.textBoxTotal.Name = "textBoxTotal";
             this.textBoxTotal.Size = new System.Drawing.Size(164, 20);
             this.textBoxTotal.TabIndex = 8;
@@ -145,11 +150,60 @@
             this.buttonAltaVenta.UseVisualStyleBackColor = true;
             this.buttonAltaVenta.Click += new System.EventHandler(this.buttonAltaVenta_Click);
             // 
+            // textBoxCupon
+            // 
+            this.textBoxCupon.Location = new System.Drawing.Point(82, 316);
+            this.textBoxCupon.Name = "textBoxCupon";
+            this.textBoxCupon.Size = new System.Drawing.Size(164, 20);
+            this.textBoxCupon.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 319);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Cupon";
+            // 
+            // buttonValidarCupon
+            // 
+            this.buttonValidarCupon.Location = new System.Drawing.Point(269, 316);
+            this.buttonValidarCupon.Name = "buttonValidarCupon";
+            this.buttonValidarCupon.Size = new System.Drawing.Size(115, 23);
+            this.buttonValidarCupon.TabIndex = 13;
+            this.buttonValidarCupon.Text = "Validar";
+            this.buttonValidarCupon.UseVisualStyleBackColor = true;
+            this.buttonValidarCupon.Click += new System.EventHandler(this.buttonValidarCupon_Click);
+            // 
+            // textBoxCuponValor
+            // 
+            this.textBoxCuponValor.Enabled = false;
+            this.textBoxCuponValor.Location = new System.Drawing.Point(82, 342);
+            this.textBoxCuponValor.Name = "textBoxCuponValor";
+            this.textBoxCuponValor.Size = new System.Drawing.Size(164, 20);
+            this.textBoxCuponValor.TabIndex = 15;
+            this.textBoxCuponValor.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 345);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Descuento:";
+            // 
             // Venta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1207, 490);
+            this.Controls.Add(this.textBoxCuponValor);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.buttonValidarCupon);
+            this.Controls.Add(this.textBoxCupon);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonAltaVenta);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.textBoxTotal);
@@ -183,5 +237,10 @@
         private System.Windows.Forms.TextBox textBoxTotal;
         private System.Windows.Forms.Button buttonLimpiar;
         private System.Windows.Forms.Button buttonAltaVenta;
+        private System.Windows.Forms.TextBox textBoxCupon;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonValidarCupon;
+        private System.Windows.Forms.TextBox textBoxCuponValor;
+        private System.Windows.Forms.Label label5;
     }
 }

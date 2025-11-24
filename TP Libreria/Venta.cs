@@ -23,8 +23,10 @@ namespace TP_Libreria
         ClienteBLL clienteBLL = new ClienteBLL();
         LibroBLL libroBLL = new LibroBLL();
         VentaBLL ventaBLL = new VentaBLL();
+        CuponBLL cuponBLL = new CuponBLL();
         BE.Usuario vendedor;
         BE.Cliente cliente = new Cliente(0,"","",0);
+        BE.Cupon cupon = null;
         List<BE.DetalleVenta> carrito = new List<BE.DetalleVenta>();
 
         private void Venta_Load(object sender, EventArgs e)
@@ -105,6 +107,16 @@ namespace TP_Libreria
             {
                 total += _detalle.total();
             }
+            if (cupon != null) { 
+               if(cupon.Valor < total)
+                {
+                    total -= cupon.Valor;
+                }
+                else
+                {
+                    total = 0;
+                }
+            }
             textBoxTotal.Text = total.ToString();
         }
 
@@ -151,7 +163,8 @@ namespace TP_Libreria
                         DateTime.Now,
                         (BE.Cliente)controlSelectorCliente.Seleccionado,
                         vendedor,
-                        carrito);
+                        carrito,
+                        cupon);
                     int res = ventaBLL.Alta(venta);
 
                     if (res <= 0)
@@ -171,6 +184,29 @@ namespace TP_Libreria
             catch (Exception)
             {
                 MessageBox.Show("Error al realizar la Venta");
+                throw;
+            }
+        }
+
+        private void buttonValidarCupon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cupon = cuponBLL.Validar(textBoxCupon.Text);
+                if(cupon != null)
+                {
+                    MessageBox.Show("El Cupon es valido");
+                }
+                else
+                {
+                    MessageBox.Show("El Cupon ingresado no es valido");
+                }
+                textBoxCuponValor.Text = cupon.Valor.ToString();
+                UpdateTotal();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al validar Cupon");
                 throw;
             }
         }
