@@ -9,6 +9,7 @@ namespace BE
 {
     public class Venta
     {
+        public Venta() { }
         public Venta(int idVenta, DateTime fecha, Cliente _cliente, Usuario usuario, List<DetalleVenta> detallesVenta, Cupon cupon = null)
         {
             IdVenta = idVenta;
@@ -65,31 +66,33 @@ namespace BE
             set { cupon = value; }
         }
 
-
-
-        public float MontoTotal()
+        public float MontoTotal
         {
-            float total = 0;
-            foreach (DetalleVenta detalle in DetallesVenta)
-            {
-                total += detalle.total();
-            }
-            if (Cupon != null)
-            {
-                if(Cupon.Valor < total)
+            get { 
+                float total = 0;
+                foreach (DetalleVenta detalle in DetallesVenta)
                 {
-                    total -= Cupon.Valor;
+                    total += detalle.total();
                 }
-                else
+                if (Cupon != null)
                 {
-                    total = 0;
+                    if(Cupon.Valor < total)
+                    {
+                        total -= Cupon.Valor;
+                    }
+                    else
+                    {
+                        total = 0;
+                    }
                 }
+                return total;
             }
-            return total;
+            set { }
         }
     }
     public class DetalleVenta
     {
+        public DetalleVenta() { }
         public DetalleVenta(Libro libro, int cantidad, float precioUnitario) { 
             Libro = libro;
             Cantidad = cantidad;

@@ -8,6 +8,7 @@ namespace BE
 {
     public class Genero
     {
+		public Genero() { }
         public Genero(int idGenero, string descripcion) {
 			IdGenero = idGenero;
 			Descripcion = descripcion;

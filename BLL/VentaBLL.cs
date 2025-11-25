@@ -2,12 +2,13 @@
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace BLL
 {
     public class VentaBLL : IBLL<Venta>
     {
-        public IDAL<Venta> DAL { get; set; }
+        public VentaDAL DAL { get; set; }
         public DetalleVentaBLL DetalleBLL { get; set; }
 
         public VentaBLL()
@@ -61,6 +62,10 @@ namespace BLL
             }
 
             return ventas;
+        }
+        public void GuardarXML(string nombre, List<Venta> lista, string path)
+        {
+            DAL.escribirXML(nombre, lista, path);
         }
     }
 }

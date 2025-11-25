@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 namespace DAL
 {
     public class Acceso
@@ -84,6 +85,29 @@ namespace DAL
             }
             return filasAfectadas;
         }
+        public void escribirXML<T>(string nombre,List<T> lista,string path)
+        {
+            DataTable tabla = new DataTable(nombre);
+            DataSet dataSet = new DataSet(nombre);
+            foreach (PropertyInfo prop in typeof(T).GetProperties())
+            {
+                Type colType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+                tabla.Columns.Add(prop.Name, colType);
+            }
+            foreach (T item in lista)
+            {
+                DataRow row = tabla.NewRow();
 
+                foreach (PropertyInfo prop in typeof(T).GetProperties())
+                {
+                    object valor = prop.GetValue(item) ?? DBNull.Value;
+                    row[prop.Name] = valor;
+                }
+
+                tabla.Rows.Add(row);
+            }
+            dataSet.Tables.Add(tabla);
+            dataSet.WriteXml(path);
+        }
     }
 }

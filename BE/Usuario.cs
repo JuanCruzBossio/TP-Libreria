@@ -9,6 +9,7 @@ namespace BE
 {
     public class Usuario
     {
+        public Usuario() { }
         public Usuario(int idUsuario, string nombre, string hashedPassword, int rol)
         {
             IdUsuario = idUsuario;
@@ -61,6 +62,11 @@ namespace BE
                 }
                 return builder.ToString();
             }
+        }
+
+        public override string ToString()
+        {
+            return Nombre;
         }
     }
 }

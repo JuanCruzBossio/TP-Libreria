@@ -20,6 +20,7 @@ namespace TP_Libreria
         }
         public BLL.UsuarioBLL usuarioBll = new BLL.UsuarioBLL();
         public BE.Usuario usuarioBE = new BE.Usuario(0, "", "", 0);
+        int rolID = 0;
         private void ABMUsuario_Load(object sender, EventArgs e)
         {
             if (rolLogueado == 1)
@@ -36,30 +37,19 @@ namespace TP_Libreria
             }
             dataGridView1.DataSource = usuarioBll.Listado();
             dataGridView1.Columns["HashedPassword"].Visible = false;
-            comboBox1.Items.Clear();
-            comboBox1.Items.Add(new { rol = 1 , descripcion = "Admin"});
-            comboBox1.Items.Add(new { rol = 2 , descripcion = "Vendedor"});
-            comboBox1.DisplayMember = "descripcion";
-            comboBox1.ValueMember = "rol";
-            
         }
         private void CargarDatosCampos()
         {
             controlNumerico1.Numero = usuarioBE.IdUsuario;
             controlTexto1.Texto = usuarioBE.Nombre;
             controlPasswor1.Password = usuarioBE.HashedPassword = null;
-            comboBox1.SelectedValue = usuarioBE.Rol;
-            int index = 0;
-            foreach (dynamic item in comboBox1.Items)
+            if(usuarioBE.Rol == 1)
             {
-                if (item.rol == usuarioBE.Rol)
-                {
-                    comboBox1.SelectedIndex = index;
-                }
-                else
-                {
-                    index++;
-                }
+                comboBox1.Text = "Admin";
+            }
+            else
+            {
+                comboBox1.Text = "Vendedor";
             }
         }
         public bool validateControllers()
@@ -109,7 +99,7 @@ namespace TP_Libreria
                     int.Parse(controlNumerico1.Numero.ToString()),
                     controlTexto1.Texto,
                     controlPasswor1.Password,
-                    int.Parse(comboBox1.SelectedValue.ToString())
+                     rol()
                 );
 
                 int res = usuarioBll.Alta(usuario);
@@ -160,7 +150,7 @@ namespace TP_Libreria
                     int.Parse(controlNumerico1.Numero.ToString()),
                     controlTexto1.Texto,
                     controlPasswor1.Password,
-                    int.Parse(comboBox1.SelectedValue.ToString())
+                     rol()
                 );
 
                 int res = usuarioBll.Modificacion(usuario);
@@ -192,5 +182,20 @@ namespace TP_Libreria
         {
 
         }
+        public int rol()
+        {
+            if(comboBox1.Text == "Admin")
+            {
+                return 1;
+            }else if(comboBox1.Text == "Vendedor")
+            {
+                return 2;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
     }
 }

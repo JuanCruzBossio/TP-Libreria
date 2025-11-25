@@ -57,6 +57,11 @@ namespace DAL
             return acceso.escribir("ModificarVenta", parametros);
         }
 
+        public void escribirXML(string nombre, List<Venta> lista, string path)
+        {
+            acceso.escribirXML(nombre, lista, path);
+        }
+
         // LISTADO
         public List<Venta> Listado()
         {
@@ -65,7 +70,6 @@ namespace DAL
 
             foreach (DataRow fila in tabla.Rows)
             {
-                // MAPEO DE CLIENTE COMPLETO
                 Cliente cliente = new Cliente(
                     idCliente: int.Parse(fila["IdCliente"].ToString()),
                     nombre: fila["ClienteNombre"].ToString(),
@@ -73,7 +77,6 @@ namespace DAL
                     edad: int.Parse(fila["ClienteEdad"].ToString())
                 );
 
-                // MAPEO DE USUARIO (VENDEDOR)
                 Usuario vendedor = new Usuario(
                     idUsuario: int.Parse(fila["IdUsuario"].ToString()),
                     nombre: fila["VendedorNombre"].ToString(),
@@ -81,14 +84,27 @@ namespace DAL
                     2
                 );
 
-                // CREACIÓN DE VENTA
-                lista.Add(new Venta(
+                Cupon cupon = null;
+                if (fila["IdCupon"] != DBNull.Value)
+                {
+                    cupon = new Cupon
+                    {
+                        IdCupon = int.Parse(fila["IdCupon"].ToString()),
+                        Codigo = fila["CuponCodigo"].ToString(),
+                        Valor = float.Parse(fila["CuponValor"].ToString()),
+                        Activo = fila["CuponActivo"] != DBNull.Value && (bool)fila["CuponActivo"]
+                    };
+                }
+
+                Venta venta = new Venta(
                     idVenta: int.Parse(fila["IdVenta"].ToString()),
                     fecha: DateTime.Parse(fila["Fecha"].ToString()),
                     _cliente: cliente,
                     usuario: vendedor,
-                    detallesVenta: new List<DetalleVenta>()
-                ));
+                    detallesVenta: new List<DetalleVenta>(),
+                    cupon : cupon
+                );
+                lista.Add(venta);
             }
 
             return lista;

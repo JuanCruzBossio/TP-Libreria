@@ -105,6 +105,7 @@
             this.controlPasswor1.MostrarPassword = false;
             this.controlPasswor1.Name = "controlPasswor1";
             this.controlPasswor1.Password = null;
+            this.controlPasswor1.PermitirEditar = true;
             this.controlPasswor1.Size = new System.Drawing.Size(708, 39);
             this.controlPasswor1.TabIndex = 13;
             this.controlPasswor1.Load += new System.EventHandler(this.controlPasswor1_Load);
@@ -121,6 +122,9 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Admin",
+            "Vendedor"});
             this.comboBox1.Location = new System.Drawing.Point(77, 143);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(509, 21);

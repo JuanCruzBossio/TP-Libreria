@@ -9,7 +9,10 @@ namespace BE
 {
 		public class Cliente
 		{
-			public Cliente(int idCliente, string nombre, string genero, int edad) {
+        public Cliente()
+        {
+        }
+        public Cliente(int idCliente, string nombre, string genero, int edad) {
 				IdCliente = idCliente;
 				Nombre = nombre;
 				Genero = genero;
@@ -45,6 +48,9 @@ namespace BE
 				get { return edad; }
 				set { edad = value; }
 			}
-
-		}
+			public override string ToString()
+			{
+				return Nombre;
+			}
+    }
 }

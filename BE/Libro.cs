@@ -8,7 +8,7 @@ namespace BE
 {
     public class Libro
     {
-
+		public Libro() { }
         public Libro( int idLibro, string titulo, string autor, Genero genero, float precio, int stock) {
 			IdLibro = idLibro;
 			Titulo = titulo;

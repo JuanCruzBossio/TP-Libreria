@@ -114,6 +114,12 @@
     <Compile Include="ControlTexto.Designer.cs">
       <DependentUpon>ControlTexto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte.Designer.cs">
+      <DependentUpon>Reporte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Venta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     </Compile>
     <EmbeddedResource Include="ControlTexto.resx">
       <DependentUpon>ControlTexto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte.resx">
+      <DependentUpon>Reporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Venta.resx">
       <DependentUpon>Venta.cs</DependentUpon>

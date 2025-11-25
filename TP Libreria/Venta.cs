@@ -19,7 +19,6 @@ namespace TP_Libreria
             InitializeComponent();
             vendedor = usuario;
         }
-        GeneroBLL generoBLL = new GeneroBLL();
         ClienteBLL clienteBLL = new ClienteBLL();
         LibroBLL libroBLL = new LibroBLL();
         VentaBLL ventaBLL = new VentaBLL();
@@ -36,7 +35,6 @@ namespace TP_Libreria
             dataGridViewCarrito.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCarrito.MultiSelect = false;
             controlSelectorCliente.CargarLista<BE.Cliente>(clienteBLL.Listado());
-            controlSelectorCliente.ConfigurarDisplayMember("Nombre");
             List<BE.Libro> listadoLibro = libroBLL.Listado().Where(libro => libro.Stock > 0).ToList();
             dataGridViewLibros.DataSource = listadoLibro;
             dataGridViewLibros.Columns["IdLibro"].Visible = false;

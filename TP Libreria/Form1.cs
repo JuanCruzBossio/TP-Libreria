@@ -78,5 +78,12 @@ namespace TP_Libreria
             ventanaCupon.MdiParent = this;
             ventanaCupon.Show();
         }
+
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Reporte ventanaReporte = new Reporte();
+            ventanaReporte.MdiParent = this;
+            ventanaReporte.Show();
+        }
     }
 }

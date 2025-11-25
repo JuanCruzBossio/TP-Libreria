@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace TP_Libreria
@@ -16,17 +14,24 @@ namespace TP_Libreria
         {
             InitializeComponent();
         }
+
         private List<object> listado = new List<object>();
         private object seleccionado;
+
         public object Seleccionado
         {
             get => seleccionado;
             set
             {
                 seleccionado = value;
-                comboBox1.SelectedItem = value;
+
+                if (value != null && listado.Contains(value))
+                    comboBox1.SelectedItem = value;
+                else
+                    comboBox1.SelectedIndex = -1;
             }
         }
+
         private string titulo;
         public string Titulo
         {
@@ -40,45 +45,66 @@ namespace TP_Libreria
         public void CargarLista<T>(List<T> lista)
         {
             listado = lista.Cast<object>().ToList();
+
             comboBox1.DataSource = null;
+            comboBox1.DisplayMember = null;
+            comboBox1.ValueMember = null;
+
             comboBox1.DataSource = listado;
+
+            comboBox1.SelectedIndex = -1;
+
+            seleccionado = null;
         }
 
-        public void CargarSeleccionado(object valor, string parametroID)
-        {
-            Seleccionado = listado.FirstOrDefault(item =>
-            {
-                var prop = item.GetType().GetProperty(parametroID);
-                return object.Equals(prop.GetValue(item), prop.GetValue(valor));
-            });
-        }
         public void ConfigurarDisplayMember(string propiedad)
         {
             comboBox1.DisplayMember = propiedad;
         }
+
+        public void ConfigurarValueMember(string propiedad)
+        {
+            comboBox1.ValueMember = propiedad;
+        }
+
+        public void CargarSeleccionado(object valorID, string propiedadID)
+        {
+            foreach (var item in listado)
+            {
+                PropertyInfo prop = item.GetType().GetProperty(propiedadID);
+
+                if (prop == null)
+                    throw new Exception($"La propiedad {propiedadID} no existe en el objeto.");
+
+                var itemValue = prop.GetValue(item);
+
+                if (object.Equals(itemValue, valorID))
+                {
+                    seleccionado = item;
+                    comboBox1.SelectedItem = item;
+                    return;
+                }
+            }
+
+            comboBox1.SelectedIndex = -1;
+            seleccionado = null;
+        }
         public bool Validar()
         {
-            if (Seleccionado != null)
-            {
-                comboBox1.BackColor = Color.White;
-                return true;
-            }
-            else
-            {
-                comboBox1.BackColor = Color.Red;
-                return false;
-            }
-        }
-        private void ControlSelector_Load(object sender, EventArgs e)
-        {
+            bool ok = Seleccionado != null;
+
+            comboBox1.BackColor = ok ? Color.White : Color.Red;
+
+            return ok;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem != null)
-            {
-                seleccionado = comboBox1.SelectedItem;
-            }
+            seleccionado = comboBox1.SelectedItem;
+        }
+
+        private void ControlSelector_Load(object sender, EventArgs e)
+        {
         }
     }
 }
