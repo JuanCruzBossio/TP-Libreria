@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.controlSelectorCliente = new TP_Libreria.ControlSelector();
             this.controlSelectorVendedor = new TP_Libreria.ControlSelector();
@@ -42,34 +40,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tipo de Reporte";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(145, 15);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(465, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 326);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 278);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(750, 270);
+            this.dataGridView1.Size = new System.Drawing.Size(750, 552);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // controlSelectorCliente
             // 
-            this.controlSelectorCliente.Location = new System.Drawing.Point(38, 58);
+            this.controlSelectorCliente.Location = new System.Drawing.Point(38, 10);
             this.controlSelectorCliente.Name = "controlSelectorCliente";
             this.controlSelectorCliente.Seleccionado = null;
             this.controlSelectorCliente.Size = new System.Drawing.Size(588, 36);
@@ -78,7 +60,7 @@
             // 
             // controlSelectorVendedor
             // 
-            this.controlSelectorVendedor.Location = new System.Drawing.Point(38, 100);
+            this.controlSelectorVendedor.Location = new System.Drawing.Point(38, 52);
             this.controlSelectorVendedor.Name = "controlSelectorVendedor";
             this.controlSelectorVendedor.Seleccionado = null;
             this.controlSelectorVendedor.Size = new System.Drawing.Size(588, 36);
@@ -87,7 +69,7 @@
             // 
             // controlSelectorGenero
             // 
-            this.controlSelectorGenero.Location = new System.Drawing.Point(38, 142);
+            this.controlSelectorGenero.Location = new System.Drawing.Point(38, 94);
             this.controlSelectorGenero.Name = "controlSelectorGenero";
             this.controlSelectorGenero.Seleccionado = null;
             this.controlSelectorGenero.Size = new System.Drawing.Size(588, 36);
@@ -96,7 +78,7 @@
             // 
             // controlSelectorLibro
             // 
-            this.controlSelectorLibro.Location = new System.Drawing.Point(38, 184);
+            this.controlSelectorLibro.Location = new System.Drawing.Point(38, 136);
             this.controlSelectorLibro.Name = "controlSelectorLibro";
             this.controlSelectorLibro.Seleccionado = null;
             this.controlSelectorLibro.Size = new System.Drawing.Size(588, 36);
@@ -105,7 +87,7 @@
             // 
             // controlSelectorCupon
             // 
-            this.controlSelectorCupon.Location = new System.Drawing.Point(38, 226);
+            this.controlSelectorCupon.Location = new System.Drawing.Point(38, 178);
             this.controlSelectorCupon.Name = "controlSelectorCupon";
             this.controlSelectorCupon.Seleccionado = null;
             this.controlSelectorCupon.Size = new System.Drawing.Size(588, 36);
@@ -114,7 +96,7 @@
             // 
             // buttonGenerar
             // 
-            this.buttonGenerar.Location = new System.Drawing.Point(93, 297);
+            this.buttonGenerar.Location = new System.Drawing.Point(93, 249);
             this.buttonGenerar.Name = "buttonGenerar";
             this.buttonGenerar.Size = new System.Drawing.Size(115, 23);
             this.buttonGenerar.TabIndex = 11;
@@ -124,7 +106,7 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(265, 297);
+            this.buttonGuardar.Location = new System.Drawing.Point(265, 249);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(115, 23);
             this.buttonGuardar.TabIndex = 12;
@@ -134,7 +116,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(657, 142);
+            this.button2.Location = new System.Drawing.Point(657, 94);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(115, 23);
             this.button2.TabIndex = 13;
@@ -146,7 +128,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 666);
+            this.ClientSize = new System.Drawing.Size(778, 842);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonGenerar);
@@ -156,21 +138,15 @@
             this.Controls.Add(this.controlSelectorVendedor);
             this.Controls.Add(this.controlSelectorCliente);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
             this.Name = "Reporte";
             this.Text = "Reporte";
             this.Load += new System.EventHandler(this.Reporte_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private ControlSelector controlSelectorCliente;
         private ControlSelector controlSelectorVendedor;

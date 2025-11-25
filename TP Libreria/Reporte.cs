@@ -98,5 +98,12 @@ namespace TP_Libreria
                 }
             }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            BE.Venta venta = (BE.Venta)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+            VisorVenta visor = new VisorVenta(venta);
+            visor.Show();
+        }
     }
 }
