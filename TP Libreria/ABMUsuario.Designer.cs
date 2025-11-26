@@ -37,13 +37,14 @@
             this.controlPasswor1 = new TP_Libreria.ControlPasswor();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.controlNumerico2 = new TP_Libreria.ControlNumerico();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 185);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 227);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(583, 150);
             this.dataGridView1.TabIndex = 4;
@@ -51,7 +52,7 @@
             // 
             // buttonModificacion
             // 
-            this.buttonModificacion.Location = new System.Drawing.Point(243, 356);
+            this.buttonModificacion.Location = new System.Drawing.Point(243, 398);
             this.buttonModificacion.Name = "buttonModificacion";
             this.buttonModificacion.Size = new System.Drawing.Size(98, 37);
             this.buttonModificacion.TabIndex = 12;
@@ -61,7 +62,7 @@
             // 
             // buttonBaja
             // 
-            this.buttonBaja.Location = new System.Drawing.Point(128, 356);
+            this.buttonBaja.Location = new System.Drawing.Point(128, 398);
             this.buttonBaja.Name = "buttonBaja";
             this.buttonBaja.Size = new System.Drawing.Size(98, 37);
             this.buttonBaja.TabIndex = 11;
@@ -71,7 +72,7 @@
             // 
             // buttonAlta
             // 
-            this.buttonAlta.Location = new System.Drawing.Point(14, 356);
+            this.buttonAlta.Location = new System.Drawing.Point(14, 398);
             this.buttonAlta.Name = "buttonAlta";
             this.buttonAlta.Size = new System.Drawing.Size(98, 37);
             this.buttonAlta.TabIndex = 10;
@@ -131,11 +132,22 @@
             this.comboBox1.TabIndex = 15;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // controlNumerico2
+            // 
+            this.controlNumerico2.Location = new System.Drawing.Point(12, 184);
+            this.controlNumerico2.Name = "controlNumerico2";
+            this.controlNumerico2.Numero = 3F;
+            this.controlNumerico2.PermitirEditar = true;
+            this.controlNumerico2.Size = new System.Drawing.Size(584, 37);
+            this.controlNumerico2.TabIndex = 16;
+            this.controlNumerico2.Titulo = "Intentos :";
+            // 
             // ABMUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(698, 450);
+            this.Controls.Add(this.controlNumerico2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.controlPasswor1);
@@ -165,5 +177,6 @@
         private ControlPasswor controlPasswor1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private ControlNumerico controlNumerico2;
     }
 }

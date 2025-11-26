@@ -17,7 +17,8 @@ namespace DAL
             {
                 new SqlParameter("@Nombre", entidad.Nombre),
                 new SqlParameter("@HashedPassword", entidad.HashedPassword),
-                new SqlParameter("@Rol", entidad.Rol)
+                new SqlParameter("@Rol", entidad.Rol),
+                new SqlParameter("@IntentosRestantes", entidad.IntentosRestantes)
             };
 
             return acceso.escribir("AltaUsuario", parametros);
@@ -42,7 +43,8 @@ namespace DAL
                 new SqlParameter("@IdUsuario", entidad.IdUsuario),
                 new SqlParameter("@Nombre", entidad.Nombre),
                 new SqlParameter("@HashedPassword", entidad.HashedPassword),
-                new SqlParameter("@Rol", entidad.Rol)
+                new SqlParameter("@Rol", entidad.Rol),
+                new SqlParameter("@IntentosRestantes", entidad.IntentosRestantes)
             };
 
             return acceso.escribir("ModificacionUsuario", parametros);
@@ -60,7 +62,8 @@ namespace DAL
                     idUsuario: int.Parse(fila["IdUsuario"].ToString()),
                     nombre: fila["Nombre"].ToString(),
                     hashedPassword: fila["HashedPassword"].ToString(),
-                    rol: int.Parse(fila["Rol"].ToString())
+                    rol: int.Parse(fila["Rol"].ToString()),
+                    intentosRestantes: int.Parse(fila["IntentosRestantes"].ToString())
                 ));
             }
 
@@ -73,7 +76,7 @@ namespace DAL
                 new SqlParameter("@Nombre", user.Nombre),
                 new SqlParameter("@HashedPassword", user.HashedPassword)
             };
-            Usuario usuario = new Usuario(0, "", "", 0);
+            Usuario usuario = new Usuario(0, "", "", 0,0);
             DataTable tabla = acceso.leer("login", parametros);
 
             foreach (DataRow fila in tabla.Rows)
@@ -82,10 +85,41 @@ namespace DAL
                                     idUsuario: int.Parse(fila["IdUsuario"].ToString()),
                                     nombre: fila["Nombre"].ToString(),
                                     hashedPassword: fila["HashedPassword"].ToString(),
-                                    rol: int.Parse(fila["Rol"].ToString())
+                                    rol: int.Parse(fila["Rol"].ToString()),
+                                    intentosRestantes: int.Parse(fila["IntentosRestantes"].ToString())
                  );
             }
             return usuario;
+        }
+        public int IntentosRestantes(string nombre)
+        {
+            int intentosRestantes = 0;
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Nombre", nombre)
+            };
+            DataTable tabla = acceso.leer("IntentosRestantes", parametros);
+
+            foreach (DataRow fila in tabla.Rows)
+            {
+                intentosRestantes = int.Parse(fila["IntentosRestantes"].ToString());
+            }
+            return intentosRestantes;
+        }
+        public int RestarIntento(string nombre)
+        {
+            int intentosRestantes = 0;
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Nombre", nombre)
+            };
+            DataTable tabla = acceso.leer("RestarIntento", parametros);
+
+            foreach (DataRow fila in tabla.Rows)
+            {
+                intentosRestantes = int.Parse(fila["IntentosRestantes"].ToString());
+            }
+            return intentosRestantes;
         }
     }
 }

@@ -23,7 +23,8 @@ namespace TP_Libreria
             }
             else if (usuarioLogueado.Rol == 2)
             {
-                generoToolStripMenuItem.Visible = false;
+                usuarioToolStripMenuItem.Visible = false;
+                adminToolStripMenuItem.Visible = false;
             }
         }
 
@@ -34,7 +35,7 @@ namespace TP_Libreria
 
         private void generoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMGenero ventanaGenero = new ABMGenero();
+            ABMGenero ventanaGenero = new ABMGenero(usuarioLogueado.Rol);
             ventanaGenero.MdiParent = this;
             ventanaGenero.Show();
         }
@@ -91,6 +92,11 @@ namespace TP_Libreria
             Reporte ventanaReporteLibro = new Reporte();
             ventanaReporteLibro.MdiParent = this;
             ventanaReporteLibro.Show();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

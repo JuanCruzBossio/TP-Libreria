@@ -10,12 +10,13 @@ namespace BE
     public class Usuario
     {
         public Usuario() { }
-        public Usuario(int idUsuario, string nombre, string hashedPassword, int rol)
+        public Usuario(int idUsuario, string nombre, string hashedPassword, int rol, int intentosRestantes)
         {
             IdUsuario = idUsuario;
             Nombre = nombre;
             HashedPassword = hashedPassword;
             Rol = rol;
+            IntentosRestantes = intentosRestantes;
         }
 
         private int idUsuario;
@@ -63,7 +64,13 @@ namespace BE
                 return builder.ToString();
             }
         }
+        private int intentosRestantes;
 
+        public int IntentosRestantes
+        {
+            get { return intentosRestantes; }
+            set { intentosRestantes = value; }
+        }
         public override string ToString()
         {
             return Nombre;

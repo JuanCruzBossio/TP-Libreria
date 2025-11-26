@@ -81,7 +81,8 @@ namespace DAL
                     idUsuario: int.Parse(fila["IdUsuario"].ToString()),
                     nombre: fila["VendedorNombre"].ToString(),
                     null,
-                    2
+                    2,
+                    3
                 );
 
                 Cupon cupon = null;

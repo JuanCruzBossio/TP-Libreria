@@ -40,6 +40,14 @@ namespace BLL
         {
             return DAL.Login(user);
         }
+        public int IntentosRestantes(string nombre)
+        {
+            return DAL.IntentosRestantes(nombre);
+        }
+        public int RestarIntento(string nombre)
+        {
+            return DAL.RestarIntento(nombre);
+        }
     }
 
 }

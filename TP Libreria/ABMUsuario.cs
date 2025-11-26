@@ -19,7 +19,7 @@ namespace TP_Libreria
             rolLogueado = rol;
         }
         public BLL.UsuarioBLL usuarioBll = new BLL.UsuarioBLL();
-        public BE.Usuario usuarioBE = new BE.Usuario(0, "", "", 0);
+        public BE.Usuario usuarioBE = new BE.Usuario(0, "", "", 0,0);
         int rolID = 0;
         private void ABMUsuario_Load(object sender, EventArgs e)
         {
@@ -51,6 +51,7 @@ namespace TP_Libreria
             {
                 comboBox1.Text = "Vendedor";
             }
+            controlNumerico2.Numero = usuarioBE.IntentosRestantes;
         }
         public bool validateControllers()
         {
@@ -99,7 +100,8 @@ namespace TP_Libreria
                     int.Parse(controlNumerico1.Numero.ToString()),
                     controlTexto1.Texto,
                     controlPasswor1.Password,
-                     rol()
+                    rol(),
+                    int.Parse(controlNumerico2.Numero.ToString())
                 );
 
                 int res = usuarioBll.Alta(usuario);
@@ -150,7 +152,8 @@ namespace TP_Libreria
                     int.Parse(controlNumerico1.Numero.ToString()),
                     controlTexto1.Texto,
                     controlPasswor1.Password,
-                     rol()
+                    rol(),
+                    int.Parse(controlNumerico2.Numero.ToString())
                 );
 
                 int res = usuarioBll.Modificacion(usuario);

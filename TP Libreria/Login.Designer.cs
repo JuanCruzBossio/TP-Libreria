@@ -49,8 +49,9 @@
             this.controlPasswor1.MostrarPassword = false;
             this.controlPasswor1.Name = "controlPasswor1";
             this.controlPasswor1.Password = "";
+            this.controlPasswor1.PermitirEditar = true;
             this.controlPasswor1.Size = new System.Drawing.Size(728, 44);
-            this.controlPasswor1.TabIndex = 0;
+            this.controlPasswor1.TabIndex = 1;
             // 
             // controlTexto1
             // 
@@ -58,7 +59,7 @@
             this.controlTexto1.Name = "controlTexto1";
             this.controlTexto1.PermitirNull = false;
             this.controlTexto1.Size = new System.Drawing.Size(584, 36);
-            this.controlTexto1.TabIndex = 1;
+            this.controlTexto1.TabIndex = 0;
             this.controlTexto1.Texto = "";
             this.controlTexto1.Titulo = "Usuario";
             // 

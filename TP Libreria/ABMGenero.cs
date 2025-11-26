@@ -14,9 +14,12 @@ namespace TP_Libreria
 {
     public partial class ABMGenero : Form
     {
-        public ABMGenero()
+        public int rolLogueado;
+
+        public ABMGenero(int rol)
         {
             InitializeComponent();
+            this.rolLogueado = rol;
         }
         public BLL.GeneroBLL generoBll = new BLL.GeneroBLL();
         public BE.Genero generoBE = new BE.Genero(0, "");
@@ -27,6 +30,17 @@ namespace TP_Libreria
             controlTexto1.Titulo = "Descripcion:";
             controlTexto1.Texto = generoBE.Descripcion;
             dataGridView1.DataSource = generoBll.Listado();
+            if (rolLogueado == 1)
+            {
+                //Es admin tiene todos los permisos
+            }
+            else
+            {
+                //Es vendedor, no puede Utilizar ABM, solo mirar
+                buttonAlta.Enabled = false;
+                buttonBaja.Enabled = false;
+                buttonModificacion.Enabled = false;
+            }
         }
 
         private void controlNumerico1_Load(object sender, EventArgs e)

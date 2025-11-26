@@ -8,9 +8,12 @@ namespace TP_Libreria
 {
     public partial class ABMCupon : Form
     {
-        public ABMCupon()
+        public int rolLogueado;
+
+        public ABMCupon(int rol)
         {
             InitializeComponent();
+            this.rolLogueado = rol;
         }
 
         CuponBLL cuponBLL = new CuponBLL();
@@ -20,6 +23,17 @@ namespace TP_Libreria
         {
             dataGridView1.DataSource = cuponBLL.Listado();
             dataGridView1.Columns["Activo"].ReadOnly = true;
+            if (rolLogueado == 1)
+            {
+                //Es admin tiene todos los permisos
+            }
+            else
+            {
+                //Es vendedor, no puede Utilizar ABM, solo mirar
+                buttonAlta.Enabled = false;
+                buttonBaja.Enabled = false;
+                buttonModificacion.Enabled = false;
+            }
         }
 
         private void CargarDatosCampos()
