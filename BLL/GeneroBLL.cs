@@ -10,7 +10,7 @@ namespace BLL
 {
     public class GeneroBLL : IBLL<BE.Genero>
     {
-        public IDAL<Genero> DAL { get; set; }
+        public  GeneroDAL DAL { get; set; }
 
         public GeneroBLL()
         {
@@ -35,6 +35,10 @@ namespace BLL
         public int Modificacion(Genero entidad)
         {
             return DAL.Modificacion(entidad);
+        }
+        public void GuardarXML(string nombre, List<ReporteGenero> lista, string path)
+        {
+            DAL.escribirXML(nombre, lista, path);
         }
     }
 }

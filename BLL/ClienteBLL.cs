@@ -10,7 +10,7 @@ namespace BLL
 {
     public class ClienteBLL : IBLL<BE.Cliente>
     {
-        public IDAL<Cliente> DAL { get; set; }
+        public ClienteDAL DAL { get; set; }
 
         public ClienteBLL()
         {
@@ -35,6 +35,10 @@ namespace BLL
         public int Modificacion(Cliente entidad)
         {
             return DAL.Modificacion(entidad);
+        }
+        public void GuardarXML(string nombre, List<ReporteCliente> lista, string path)
+        {
+            DAL.escribirXML(nombre, lista, path);
         }
     }
 

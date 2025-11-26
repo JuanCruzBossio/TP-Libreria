@@ -10,7 +10,7 @@ namespace BLL
 {
     public class LibroBLL : IBLL<BE.Libro>
     {
-        public IDAL<Libro> DAL { get; set; }
+        public LibroDAL DAL { get; set; }
 
         public LibroBLL()
         {
@@ -35,6 +35,10 @@ namespace BLL
         public int Modificacion(Libro entidad)
         {
             return DAL.Modificacion(entidad);
+        }
+        public void GuardarXML(string nombre, List<ReporteLibro> lista, string path)
+        {
+            DAL.escribirXML(nombre, lista, path);
         }
     }
 

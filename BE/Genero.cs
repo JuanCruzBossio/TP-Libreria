@@ -33,4 +33,9 @@ namespace BE
 			return Descripcion;
 		}
 	}
+    public class ReporteGenero
+    {
+        public float Cantidad { get; set; }
+        public Genero genero { get; set; }
+    }
 }

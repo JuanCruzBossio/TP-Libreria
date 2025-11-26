@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BE;
 using BLL;
 
 namespace TP_Libreria
@@ -17,93 +18,256 @@ namespace TP_Libreria
         {
             InitializeComponent();
         }
-        GeneroBLL generoBLL = new GeneroBLL();
-        ClienteBLL clienteBLL = new ClienteBLL();
-        LibroBLL libroBLL = new LibroBLL();
         VentaBLL ventaBLL = new VentaBLL();
-        CuponBLL cuponBLL = new CuponBLL();
-        UsuarioBLL usuarioBLL = new UsuarioBLL();
-        List<BE.Venta> listaVentas = new List<BE.Venta>();
-        List<BE.Venta> listaVentasFiltradas = new List<BE.Venta>();
-        private void Reporte_Load(object sender, EventArgs e)
+        List<BE.Venta> listadoVentas = new List<BE.Venta>();
+        LibroBLL libroBLL = new LibroBLL();
+        ClienteBLL clienteBLL = new ClienteBLL();
+        GeneroBLL generoBLL = new GeneroBLL();
+        private void ReporteLibro_Load(object sender, EventArgs e)
         {
-            listaVentas = ventaBLL.Listado();
-            controlSelectorCliente.CargarLista<BE.Cliente>(clienteBLL.Listado());
-            controlSelectorVendedor.CargarLista<BE.Usuario>(usuarioBLL.Listado().Where(usuario => usuario.Rol == 2).ToList());
-            controlSelectorGenero.CargarLista<BE.Genero>(generoBLL.Listado());
-            controlSelectorLibro.CargarLista<BE.Libro>(libroBLL.Listado());
-            controlSelectorCupon.CargarLista<BE.Cupon>(cuponBLL.Listado());
+            listadoVentas = ventaBLL.Listado();
+            comboBoxTipo.Items.AddRange(new string[]
+            {
+                "Libros más comprados",
+                "Libros que más recaudaron",
+                "Libros con poco stock",
+                "Géneros más vendidos",
+                "Géneros que más recaudaron",
+                "Porcentaje de ventas por género",
+                "Cliente que más libros compró",
+                "Cliente que más gastó",
+                "Cliente que más cupones usó"
+            });
+
         }
-
-        private void buttonGenerar_Click(object sender, EventArgs e)
+        public List<ReporteLibro> ordenarPorVentas()
         {
-            var query = listaVentas.AsEnumerable();
-
-            if (controlSelectorCliente.Seleccionado != null)
-            {
-                var cliente = (BE.Cliente)controlSelectorCliente.Seleccionado;
-                query = query.Where(v => v.Cliente.IdCliente == cliente.IdCliente);
-            }
-
-            if (controlSelectorVendedor.Seleccionado != null)
-            {
-                var vendedor = (BE.Usuario)controlSelectorVendedor.Seleccionado;
-                query = query.Where(v => v.Vendedor.IdUsuario == vendedor.IdUsuario);
-            }
-
-            if (controlSelectorGenero.Seleccionado != null)
-            {
-                var genero = (BE.Genero)controlSelectorGenero.Seleccionado;
-                query = query.Where(v => v.DetallesVenta.Any(d => d.Libro.Genero.IdGenero == genero.IdGenero));
-            }
-
-            if (controlSelectorLibro.Seleccionado != null)
-            {
-                var libro = (BE.Libro)controlSelectorLibro.Seleccionado;
-                query = query.Where(v => v.DetallesVenta.Any(d => d.Libro.IdLibro == libro.IdLibro));
-            }
-
-            if (controlSelectorCupon.Seleccionado != null)
-            {
-                var cupon = (BE.Cupon)controlSelectorCupon.Seleccionado;
-                query = query.Where(v => v.Cupon != null && v.Cupon.IdCupon == cupon.IdCupon);
-            }
-
-            listaVentasFiltradas = query.ToList();
-            dataGridView1.DataSource = listaVentasFiltradas;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            controlSelectorCliente.CargarSeleccionado( -1, "IdCliente");
-            controlSelectorVendedor.CargarSeleccionado( -1, "IdUsuario");
-            controlSelectorGenero.CargarSeleccionado( -1, "IdGenero");
-            controlSelectorLibro.CargarSeleccionado( -1, "IdLibro");
-            controlSelectorCupon.CargarSeleccionado( -1, "IdCupon");
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if(listaVentasFiltradas.Count > 0)
-            {
-                SaveFileDialog dlg = new SaveFileDialog();
-                dlg.Filter = "Archivo XML (*.xml)|*.xml";
-                dlg.Title = "Guardar XML";
-                dlg.FileName = "MiArchivo.xml";
-
-                if (dlg.ShowDialog() == DialogResult.OK)
+            return listadoVentas
+                .SelectMany(v => v.DetallesVenta)
+                .GroupBy(d => d.Libro.IdLibro)
+                .Select(g => new ReporteLibro
                 {
-                    ventaBLL.GuardarXML("Reporte de Ventas", listaVentasFiltradas,dlg.FileName);
-                    MessageBox.Show("XML guardado correctamente.");
-                }
-            }
+                    libro = g.First().Libro,        
+                    Cantidad = g.Sum(d => d.Cantidad)
+                })
+                .OrderByDescending(r => r.Cantidad) 
+                .ToList();
+        }
+        public List<ReporteLibro> ordenarPorRecaudacion()
+        {
+            return listadoVentas
+                .SelectMany(v => v.DetallesVenta) 
+                .GroupBy(d => d.Libro.IdLibro) 
+                .Select(g => new ReporteLibro
+                {
+                    libro = g.First().Libro,  
+                    Cantidad = g.Sum(d => d.Cantidad * d.PrecioUnitario) 
+                })
+                .OrderByDescending(r => r.Cantidad) 
+                .ToList();
+        }
+        public List<ReporteLibro> ordenarPorPocoStock()
+        {
+            return listadoVentas
+                .SelectMany(v => v.DetallesVenta)
+                .GroupBy(d => d.Libro.IdLibro)
+                .Where(g => g.First().Libro.Stock < 5) 
+                .Select(g => new ReporteLibro
+                {
+                    libro = g.First().Libro,
+                    Cantidad = g.Sum(d => d.Cantidad)  
+                })
+                .OrderBy(r => r.libro.Stock)  
+                .ToList();
+        }
+        public List<ReporteGenero> ordenarPorGeneroVentas()
+        {
+            return listadoVentas
+                .SelectMany(v => v.DetallesVenta)
+                .GroupBy(d => d.Libro.Genero.IdGenero)  
+                .Select(g => new ReporteGenero
+                {
+                    genero = g.First().Libro.Genero,  
+                    Cantidad = g.Sum(d => d.Cantidad) 
+                })
+                .OrderByDescending(r => r.Cantidad) 
+                .ToList();
+        }
+        public List<ReporteGenero> ordenarPorGeneroRecaudacion()
+        {
+            return listadoVentas
+                .SelectMany(v => v.DetallesVenta)
+                .GroupBy(d => d.Libro.Genero.IdGenero)
+                .Select(g => new ReporteGenero
+                {
+                    genero = g.First().Libro.Genero,
+                    Cantidad = g.Sum(d => d.Cantidad * d.PrecioUnitario)
+                })
+                .OrderByDescending(r => r.Cantidad)
+                .ToList();
+        }
+        public List<ReporteGenero> ordenarPorPorcentajeDeVentas()
+        {
+            float totalVentas = listadoVentas
+                .SelectMany(v => v.DetallesVenta)
+                .Sum(d => d.Cantidad);
+
+            return listadoVentas
+                .SelectMany(v => v.DetallesVenta)
+                .GroupBy(d => d.Libro.Genero.IdGenero)
+                .Select(g => new ReporteGenero
+                {
+                    genero = g.First().Libro.Genero,
+                    Cantidad = (g.Sum(d => d.Cantidad) / totalVentas) * 100
+                })
+                .OrderByDescending(r => r.Cantidad)
+                .ToList();
+        }
+        public List<ReporteCliente> ordenarPorClienteMasLibros()
+        {
+            return listadoVentas
+                .GroupBy(v => v.Cliente.IdCliente)  
+                .Select(g => new ReporteCliente
+                {
+                    cliente = g.First().Cliente,  
+                    Cantidad = g.Sum(v => v.DetallesVenta.Sum(d => d.Cantidad)) 
+                })
+                .OrderByDescending(r => r.Cantidad) 
+                .ToList();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public List<ReporteCliente> ordenarPorClienteMasGasto()
         {
-            BE.Venta venta = (BE.Venta)dataGridView1.Rows[e.RowIndex].DataBoundItem;
-            VisorVenta visor = new VisorVenta(venta);
-            visor.Show();
+            return listadoVentas
+                .GroupBy(v => v.Cliente.IdCliente)
+                .Select(g => new ReporteCliente
+                {
+                    cliente = g.First().Cliente,  
+                    Cantidad = g.Sum(v => v.MontoTotal)  
+                })
+                .OrderByDescending(r => r.Cantidad) 
+                .ToList();
         }
+
+        public List<ReporteCliente> ordenarPorClienteMasCupones()
+        {
+            return listadoVentas
+                .Where(v => v.Cupon != null)  
+                .GroupBy(v => v.Cliente.IdCliente)
+                .Select(g => new ReporteCliente
+                {
+                    cliente = g.First().Cliente,
+                    Cantidad = g.Count() 
+                })
+                .OrderByDescending(r => r.Cantidad) 
+                .ToList();
+        }
+
+        private void comboBoxTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBoxTipo.Text)
+            {
+                case "Libros más comprados":
+                    dataGridView1.DataSource = ordenarPorVentas();
+                    break;
+                case "Libros que más recaudaron":
+                    dataGridView1.DataSource = ordenarPorRecaudacion();
+                    break;
+                case "Libros con poco stock":
+                    dataGridView1.DataSource = ordenarPorPocoStock();
+                    break;
+                case "Géneros más vendidos":
+                    dataGridView1.DataSource = ordenarPorGeneroVentas();
+                    break;
+                case "Géneros que más recaudaron":
+                    dataGridView1.DataSource = ordenarPorGeneroRecaudacion();
+                    break;
+                case "Porcentaje de ventas por género":
+                    dataGridView1.DataSource = ordenarPorPorcentajeDeVentas();
+                    break;
+                case "Cliente que más libros compró":
+                    dataGridView1.DataSource = ordenarPorClienteMasLibros();
+                    break;
+                case "Cliente que más gastó":
+                    dataGridView1.DataSource = ordenarPorClienteMasGasto();
+                    break;
+                case "Cliente que más cupones usó":
+                    dataGridView1.DataSource = ordenarPorClienteMasCupones();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        private void buttonGuardar_Click(object sender, EventArgs e)
+        {
+            if (comboBoxTipo.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione un tipo de reporte.");
+                return;
+            }
+
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Archivo XML (*.xml)|*.xml";
+            dlg.Title = "Guardar XML";
+            dlg.FileName = "Reporte.xml";
+
+            if (dlg.ShowDialog() != DialogResult.OK)
+                return;
+
+            string ruta = dlg.FileName;
+
+            switch (comboBoxTipo.Text)
+            {
+                case "Libros más comprados":
+                    var listaLibrosVendidos = ordenarPorVentas();
+                    libroBLL.GuardarXML("Libros mas comprados", listaLibrosVendidos, ruta);
+                    break;
+
+                case "Libros que más recaudaron":
+                    var listaLibrosRecaudados = ordenarPorRecaudacion();
+                    libroBLL.GuardarXML("Libros que mas recaudaron", listaLibrosRecaudados, ruta);
+                    break;
+
+                case "Libros con poco stock":
+                    var listaPocoStock = ordenarPorPocoStock();
+                    libroBLL.GuardarXML("Libros con poco stock", listaPocoStock, ruta);
+                    break;
+
+                case "Géneros más vendidos":
+                    var listaGeneroVentas = ordenarPorGeneroVentas();
+                    generoBLL.GuardarXML("Generos mas vendidos", listaGeneroVentas, ruta);
+                    break;
+
+                case "Géneros que más recaudaron":
+                    var listaGeneroRecauda = ordenarPorGeneroRecaudacion();
+                    generoBLL.GuardarXML("Generos que mas recaudaron", listaGeneroRecauda, ruta);
+                    break;
+
+                case "Porcentaje de ventas por género":
+                    var listaPorcentaje = ordenarPorPorcentajeDeVentas();
+                    generoBLL.GuardarXML("Porcentaje de ventas por genero", listaPorcentaje, ruta);
+                    break;
+
+                case "Cliente que más libros compró":
+                    var listaClienteLibros = ordenarPorClienteMasLibros();
+                    clienteBLL.GuardarXML("Cliente que mas libros compro", listaClienteLibros, ruta);
+                    break;
+
+                case "Cliente que más gastó":
+                    var listaClienteGasto = ordenarPorClienteMasGasto();
+                    clienteBLL.GuardarXML("Cliente que mas gasto", listaClienteGasto, ruta);
+                    break;
+
+                case "Cliente que más cupones usó":
+                    var listaClienteCupon = ordenarPorClienteMasCupones();
+                    clienteBLL.GuardarXML("Cliente que mas cupones uso", listaClienteCupon, ruta);
+                    break;
+            }
+
+            MessageBox.Show("XML guardado correctamente.");
+        }
+
     }
 }

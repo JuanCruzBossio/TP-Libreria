@@ -60,13 +60,11 @@ namespace DAL
 
             foreach (DataRow fila in tabla.Rows)
             {
-                // Primero mapeamos el genero
                 Genero genero = new Genero(
                     idGenero: int.Parse(fila["IdGenero"].ToString()),
                     descripcion: fila["GeneroDescripcion"].ToString()
                 );
 
-                // Luego mapeamos el libro incluyendo el genero
                 lista.Add(new Libro(
                     idLibro: int.Parse(fila["IdLibro"].ToString()),
                     titulo: fila["Titulo"].ToString(),
@@ -78,6 +76,10 @@ namespace DAL
             }
 
             return lista;
+        }
+        public void escribirXML(string nombre, List<ReporteLibro> lista, string path)
+        {
+            acceso.escribirXML(nombre, lista, path);
         }
 
     }

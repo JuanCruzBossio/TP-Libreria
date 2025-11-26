@@ -60,5 +60,9 @@ namespace DAL
 
             return lista;
         }
+        public void escribirXML(string nombre, List<ReporteGenero> lista, string path)
+        {
+            acceso.escribirXML(nombre, lista, path);
+        }
     }
 }

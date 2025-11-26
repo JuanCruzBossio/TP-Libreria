@@ -81,9 +81,16 @@ namespace TP_Libreria
 
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Reporte ventanaReporte = new Reporte();
-            ventanaReporte.MdiParent = this;
-            ventanaReporte.Show();
+            ReporteVenta ventanaReporteVenta = new ReporteVenta();
+            ventanaReporteVenta.MdiParent = this;
+            ventanaReporteVenta.Show();
+        }
+
+        private void librosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Reporte ventanaReporteLibro = new Reporte();
+            ventanaReporteLibro.MdiParent = this;
+            ventanaReporteLibro.Show();
         }
     }
 }

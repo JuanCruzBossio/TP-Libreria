@@ -53,4 +53,9 @@ namespace BE
 				return Nombre;
 			}
     }
+    public class ReporteCliente
+    {
+        public float Cantidad { get; set; }
+        public Cliente cliente { get; set; }
+    }
 }

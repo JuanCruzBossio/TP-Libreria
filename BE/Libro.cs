@@ -70,4 +70,9 @@ namespace BE
         }
 
     }
+    public class ReporteLibro
+    {
+        public float Cantidad { get; set; }
+        public Libro libro { get; set; }
+    }
 }
